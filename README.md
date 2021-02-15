@@ -3,8 +3,8 @@
 ## Agenda
 | Date | Topic |
 | --- | --- |
-| February 4 | <br>Lecture 0: [Motivation/Organization]()<br>lecture 1: [Measures of information and uncertainty]() |
-| February 11 | Lecture 2: |
+| February 4 | lecture 1: [Measures of information and uncertainty](https://people.montefiore.uliege.be/lwh/Info/ICT_1_introduction.pdf) |
+| February 11 | lecture 2: [Algebra of Information Measures](https://people.montefiore.uliege.be/lwh/Info/ICT_2_algebra.pdf)|
 | February 18 | Lecture 3: |
 | February 25 | Lecture 4: |
 | March 4 | Lecture 5:  |
