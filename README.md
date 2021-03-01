@@ -16,6 +16,10 @@
 | April 29 |   |
 | Mai 6 |  |
 
+## Teaching assistant  
+- [web page](https://people.montefiore.uliege.be/asutera/ICT.php)
+
+
 
 
 # Authors
