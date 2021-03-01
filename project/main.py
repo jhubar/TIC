@@ -30,6 +30,15 @@ if __name__ == "__main__":
                 ,[1/32,1/32,1/16,0]
                 ,[1/32,1/32,1/16,0]])
 
+    board = Board()
+    board.set_R(3)
+    board.set_C(3)
+    board.set_M(4)
+    board.entropy_of_board()
+
+
+
+
 
     # print(joint_entropy(dist_x_y))
 
@@ -45,4 +54,4 @@ if __name__ == "__main__":
     # print(h4)
     # print(h1 + h2 + h3 + h4 )
     # print( 27/8 )
-    entropy_of_mediacal_data()
+    # entropy_of_mediacal_data()
