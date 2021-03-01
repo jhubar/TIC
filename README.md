@@ -16,12 +16,20 @@
 | April 29 |   |
 | Mai 6 |  |
 
+
 ## Teaching assistant  
 - [web page](https://people.montefiore.uliege.be/asutera/ICT.php)
 
+## Link
+ * [Web course page](https://people.montefiore.uliege.be/lwh/Info/)
 
 
+## Assigment
+
+| Date | Topic |
+| --- | --- |
+| February 11 | <br> Read slides [here](https://people.montefiore.uliege.be/lwh/Info/ICT_1_introduction.pdf) <br> View video [here]()
 
 # Authors
-* [François Lievens](https://github.com/francoislievens)
 * [Julien hubar](https://julienhubar.be)
+* [François Lievens](https://github.com/francoislievens)
