@@ -16,10 +16,11 @@ import numpy as np
 
 
 if __name__ == "__main__":
-    dist_y = [1/2,1/4,1/8,1/8]
     dist_x = [1/4,1/4,1/4,1/4]
+    dist_y = [1/2,1/4,1/8,1/8]
 
-    dist_x_1 = [1/8,1/16,1/32,1/32]
+
+    dist_x_1 = [1/8,1/16,1/16,1/4]
     dist_x_2 = [1/16,1/8,1/32,1/32]
     dist_x_3 = [1/32,1/32,1/16,0]
     dist_x_4 = [1/32,1/32,1/16,0]
@@ -30,17 +31,16 @@ if __name__ == "__main__":
                 ,[1/32,1/32,1/16,0]
                 ,[1/32,1/32,1/16,0]])
 
-    board = Board()
-    board.set_R(3)
-    board.set_C(3)
-    board.set_M(4)
-    board.entropy_of_board()
+    # board = Board()
+    # board.set_R(3)
+    # board.set_C(3)
+    # board.set_M(4)
+    # board.entropy_of_board()
+    print(entropy(dist_x))
+    print(entropy(dist_y))
+    print(entropy(dist_x)+entropy(dist_y))
 
-
-
-
-
-    # print(joint_entropy(dist_x_y))
+    print(joint_entropy(dist_x_y))
 
     # print(mutual_information(dist_x_y, dist_x,dist_y))
 

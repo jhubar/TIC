@@ -33,6 +33,9 @@
 | --- | --- |
 | February 11 | <br> Read slides [here](https://people.montefiore.uliege.be/lwh/Info/ICT_1_introduction.pdf) <br> View video [here]()
 
+## Nice tuto
+- [Learning Guide and Examples](https://www.cl.cam.ac.uk/teaching/0809/InfoTheory/LearnGuide08.pdf)
+
 # Authors
 * [Julien hubar](https://julienhubar.be)
 * [François Lievens](https://github.com/francoislievens)
