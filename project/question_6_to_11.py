@@ -68,7 +68,9 @@ def entropy_of_mediacal_data():
     data = pd.read_csv('P1_medicalDB.csv')
     dist_data = pd.read_json('dist.json')
 
-
+    """
+    Question 6 : Computation of the entropy of each varible.
+    """
     start_table()
     data_processing(data,'age','lessorequalthan40', dist = True)
     data_processing(data,'sex','man', dist = True)
@@ -89,6 +91,10 @@ def entropy_of_mediacal_data():
     data_processing(data,'JAU','no', dist = True)
     end_table(caption = "Entropy of each variable from mediaclDB")
 
+
+    """
+    Question 7 : Computation of the conditional entropy of each varible.
+    """
     start_table()
     cond_entropy(pd.crosstab(data['age'],data['DIS'],margins = False,normalize = True),dist_data,name = 'age')
     cond_entropy(pd.crosstab(data['sex'],data['DIS'],margins = False,normalize = True),dist_data,name = 'sex')
@@ -114,4 +120,7 @@ def entropy_of_mediacal_data():
     vec2 = np.array(dist_x_y[0]) #dis
     dist_x_y = np.matrix([vec1,vec2])
 
+    """
+    Question 8 : Computation of the mutual information between the varibles obesity and age.
+    """
     print(mutual_information(dist_x_y, dist_data['dist'][0]['obesity'],dist_data['dist'][0]['age']))
