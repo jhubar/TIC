@@ -19,8 +19,8 @@ def entropy(dist):
     for p in dist:
         r= p/sum(dist)
         if r!=0:
-            h+= -r*(np.log(r))
-    return h/np.log(2)
+            h+= -r*(np.log2(r))
+    return h
 
 
 def joint_entropy(dist_x_y):
@@ -32,8 +32,8 @@ def joint_entropy(dist_x_y):
         for p_x in range(dist_x_y.shape[1]):
             r = dist_x_y[p_y,p_x]
             if r != 0:
-                h += -r * np.log(r)
-    return h/np.log(2)
+                h += -r * np.log2(r)
+    return h
 
 def conditional_entropy(dist_x_y, cond_d):
     """
@@ -45,8 +45,8 @@ def conditional_entropy(dist_x_y, cond_d):
             r = dist_x_y[p_y,p_x]
             cond = cond_d[p_y]
             if r != 0 and cond != 0:
-                h += -r * np.log(r/cond)
-    return h/np.log(2)
+                h += -r * np.log2(r/cond)
+    return h
 
 def mutual_information(dist_x_y, dist_x, dist_y):
     """

@@ -21,32 +21,33 @@ def end_table(caption=None):
     print("\label{tab:my_label}")
     print("\end{table}")
 
-def data_processing(data,name, var1 , var2 = None, var3 = None, dist = False,display = False):
+def data_processing(data,name,var0, var1 , var2 = None, var3 = None, dist = False,display = True):
     vec = []
     nb0 = 0
     nb1 = 0
     nb2 = 0
     nb3 = 0
     for i in data[name]:
-        if i == var1:
+        if i == var0:
             vec.append(0)
+            nb0 +=1
+        elif i == var1:
+            vec.append(1)
             nb1 +=1
         elif i == var2:
-            vec.append(0)
+            vec.append(2)
             nb2 +=1
         elif i == var3:
-            vec.append(0)
+            vec.append(3)
             nb3 +=1
-        else:
-            vec.append(1)
-            nb0 +=1
+
     data[name] = vec
     if display == True:
-        if var2 is None:
+        if var2 is None and var3 is None:
             if dist == False:
                 print(name +" &  " +  str(entropy([nb0/len(vec),nb1/len(vec)])) + " \\\ \hline")
             else:
-                print("{"+name +":" +  str([nb0/len(vec),nb1/len(vec),nb2/len(vec)]) + "},")
+                print("{"+name +":" +  str([nb0/len(vec),nb1/len(vec)]) + "},")
         elif var3 is None and var2 is not None:
             if dist == False:
                 print(name +" &  " +  str(entropy([nb0/len(vec),nb1/len(vec),nb2/len(vec)]))+ ",")
@@ -59,68 +60,80 @@ def data_processing(data,name, var1 , var2 = None, var3 = None, dist = False,dis
                 print("{"+name +":"+ str([nb0/len(vec),nb1/len(vec),nb2/len(vec),nb3/len(vec)]) +"},")
 
 def cond_entropy(dist_x_y, dist_data, name = None):
-    vec1 = np.array(dist_x_y[1]) #age
-    vec2 = np.array(dist_x_y[0]) #dis
-    dist_x_y = np.matrix([vec1,vec2])
+    dist_x_y = np.matrix(dist_x_y)
     print(name +" &  " +str(conditional_entropy(dist_x_y, dist_data['dist'][0]['DIS']))+ " \\\ \hline")
 
 def entropy_of_mediacal_data():
     data = pd.read_csv('P1_medicalDB.csv')
     dist_data = pd.read_json('dist.json')
 
+    head_without_DIS = ['age','sex','obesity','ALC','iron','fatigue','TRI','ALT','AST','GGTP','CHL','AMA','MSC','BIL','ITC','JAU']
+
+
     """
     Question 6 : Computation of the entropy of each varible.
     """
     start_table()
-    data_processing(data,'age','lessorequalthan40', dist = True)
-    data_processing(data,'sex','man', dist = True)
-    data_processing(data,'obesity','thin','regular', dist = True)
-    data_processing(data,'ALC','no', dist = True)
-    data_processing(data,'iron','low','normal','high', dist = True)
-    data_processing(data,'DIS','healthy','PBC', dist = True)
-    data_processing(data,'fatigue','no', dist = True)
-    data_processing(data,'TRI','normal', dist = True)
-    data_processing(data,'ALT','normal', dist = True)
-    data_processing(data,'AST','normal', dist = True)
-    data_processing(data,'GGTP','normal', dist = True)
-    data_processing(data,'CHL','low','normal', dist = True)
-    data_processing(data,'AMA','no', dist = True)
-    data_processing(data,'MSC','no', dist = True)
-    data_processing(data,'BIL','normal', dist = True)
-    data_processing(data,'ITC','no', dist = True)
-    data_processing(data,'JAU','no', dist = True)
+    data_processing(data,'age', var0 = 'lessorequalthan40', var1 ='morethan40' , dist = False)
+    data_processing(data,'sex',var0='man',var1 = 'woman' , dist = False)
+    data_processing(data,'obesity',var0 = 'thin', var1 = 'regular', var2= 'overweigh', dist = False)
+    data_processing(data,'ALC',var0 = 'yes', var1= 'no', dist = False)
+    data_processing(data,'iron', var0 ='low',var1 ='normal',var2 ='high',var3 ='very high', dist = False)
+    data_processing(data,'DIS',var0 = 'healthy',var1= 'PBC', var2='steatosis' , dist = False)
+    data_processing(data,'fatigue',var0 = 'yes', var1= 'no', dist = False)
+    data_processing(data,'TRI', var0 ='abnormal', var1='normal', dist = False)
+    data_processing(data,'ALT', var0 ='abnormal', var1='normal', dist = False)
+    data_processing(data,'AST', var0 ='abnormal', var1='normal', dist = False)
+    data_processing(data,'GGTP',var0 ='abnormal', var1='normal', dist = False)
+    data_processing(data,'CHL',var0 ='low',var1 ='normal',var2 ='high', dist = False)
+    data_processing(data,'AMA',var0 = 'yes', var1= 'no', dist = False)
+    data_processing(data,'MSC',var0 = 'yes', var1= 'no', dist = False)
+    data_processing(data,'BIL',var0 ='abnormal', var1='normal', dist = False)
+    data_processing(data,'ITC',var0 = 'yes', var1= 'no', dist = False)
+    data_processing(data,'JAU',var0 = 'yes', var1= 'no', dist = False)
     end_table(caption = "Entropy of each variable from mediaclDB")
 
 
     """
     Question 7 : Computation of the conditional entropy of each varible.
     """
+
+
+
     start_table()
-    cond_entropy(pd.crosstab(data['age'],data['DIS'],margins = False,normalize = True),dist_data,name = 'age')
-    cond_entropy(pd.crosstab(data['sex'],data['DIS'],margins = False,normalize = True),dist_data,name = 'sex')
-    cond_entropy(pd.crosstab(data['obesity'],data['DIS'],margins = False,normalize = True),dist_data,name = "obesity")
-    cond_entropy(pd.crosstab(data['ALC'],data['DIS'],margins = False,normalize = True),dist_data,name = "ALC")
-    cond_entropy(pd.crosstab(data['iron'],data['DIS'],margins = False,normalize = True),dist_data,name = "iron")
-    cond_entropy(pd.crosstab(data['fatigue'],data['DIS'],margins = False,normalize = True),dist_data,name = "fatigue")
-    cond_entropy(pd.crosstab(data['TRI'],data['DIS'],margins = False,normalize = True),dist_data,name = "TRI")
-    cond_entropy(pd.crosstab(data['ALT'],data['DIS'],margins = False,normalize = True),dist_data,name = "ALT")
-    cond_entropy(pd.crosstab(data['AST'],data['DIS'],margins = False,normalize = True),dist_data,name = "AST")
-    cond_entropy(pd.crosstab(data['GGTP'],data['DIS'],margins = False,normalize = True),dist_data,name = "GGTP")
-    cond_entropy(pd.crosstab(data['CHL'],data['DIS'],margins = False,normalize = True),dist_data,name = "CHL")
-    cond_entropy(pd.crosstab(data['AMA'],data['DIS'],margins = False,normalize = True),dist_data,name = "AMA")
-    cond_entropy(pd.crosstab(data['MSC'],data['DIS'],margins = False,normalize = True),dist_data,name = "MSC")
-    cond_entropy(pd.crosstab(data['BIL'],data['DIS'],margins = False,normalize = True),dist_data,name = "BIL")
-    cond_entropy(pd.crosstab(data['ITC'],data['DIS'],margins = False,normalize = True),dist_data,name = "ITC")
-    cond_entropy(pd.crosstab(data['JAU'],data['DIS'],margins = False,normalize = True),dist_data,name = "JAU")
+    cond_entropy(pd.crosstab(data['DIS'],data['age'],margins = False,normalize = True),dist_data,name = 'age')
+    cond_entropy(pd.crosstab(data['DIS'],data['sex'],margins = False,normalize = True),dist_data,name = 'sex')
+    cond_entropy(pd.crosstab(data['DIS'],data['obesity'],margins = False,normalize = True),dist_data,name = "obesity")
+    cond_entropy(pd.crosstab(data['DIS'],data['ALC'],margins = False,normalize = True),dist_data,name = "ALC")
+    cond_entropy(pd.crosstab(data['DIS'],data['iron'],margins = False,normalize = True),dist_data,name = "iron")
+    cond_entropy(pd.crosstab(data['DIS'],data['fatigue'],margins = False,normalize = True),dist_data,name = "fatigue")
+    cond_entropy(pd.crosstab(data['DIS'],data['TRI'],margins = False,normalize = True),dist_data,name = "TRI")
+    cond_entropy(pd.crosstab(data['DIS'],data['ALT'],margins = False,normalize = True),dist_data,name = "ALT")
+    cond_entropy(pd.crosstab(data['DIS'],data['AST'],margins = False,normalize = True),dist_data,name = "AST")
+    cond_entropy(pd.crosstab(data['DIS'],data['GGTP'],margins = False,normalize = True),dist_data,name = "GGTP")
+    cond_entropy(pd.crosstab(data['DIS'],data['CHL'],margins = False,normalize = True),dist_data,name = "CHL")
+    cond_entropy(pd.crosstab(data['DIS'],data['AMA'],margins = False,normalize = True),dist_data,name = "AMA")
+    cond_entropy(pd.crosstab(data['DIS'],data['MSC'],margins = False,normalize = True),dist_data,name = "MSC")
+    cond_entropy(pd.crosstab(data['DIS'],data['BIL'],margins = False,normalize = True),dist_data,name = "BIL")
+    cond_entropy(pd.crosstab(data['DIS'],data['ITC'],margins = False,normalize = True),dist_data,name = "ITC")
+    cond_entropy(pd.crosstab(data['DIS'],data['JAU'],margins = False,normalize = True),dist_data,name = "JAU")
     end_table(caption = "Conditional entropy of the disease given each variables from mediaclDB")
 
 
-    dist_x_y = pd.crosstab(data['obesity'],data['age'],margins = False,normalize = True)
-    vec1 = np.array(dist_x_y[1]) #age
-    vec2 = np.array(dist_x_y[0]) #dis
-    dist_x_y = np.matrix([vec1,vec2])
+
 
     """
     Question 8 : Computation of the mutual information between the varibles obesity and age.
     """
-    print(mutual_information(dist_x_y, dist_data['dist'][0]['obesity'],dist_data['dist'][0]['age']))
+    dist_x_y = pd.crosstab(data['obesity'],data['age'],margins = False,normalize = True)
+    print(mutual_information(np.matrix(dist_x_y),dist_data['dist'][0]['obesity'],dist_data['dist'][0]['age']))
+
+    for i in head_without_DIS:
+
+        print("##############################################################")
+        print(pd.crosstab(data['DIS'],data[i],margins = False,normalize = True))
+        print("##############################################################")
+
+    for i in head_without_DIS:
+        dist_x_y = pd.crosstab(data['DIS'],data[i],margins = False,normalize = True)
+        print(i +": "+ str( mutual_information(np.matrix(dist_x_y),dist_data['dist'][0]['obesity'],dist_data['dist'][0][i])))
