@@ -42,22 +42,25 @@ def data_processing(data,name,var0, var1 , var2 = None, var3 = None, dist = True
             nb3 +=1
 
     data[name] = vec
+
     if display == True:
         if var2 is None and var3 is None:
             if dist == False:
                 print(name +" &  " +  str(entropy([nb0/len(vec),nb1/len(vec)])) + " \\\ \hline")
+            elif name == "JAU":
+                print("\""+name +"\":" +  str([nb0/len(vec),nb1/len(vec)]) )
             else:
-                print("{"+name +":" +  str([nb0/len(vec),nb1/len(vec)]) + "},")
+                print("\""+name +"\":" +  str([nb0/len(vec),nb1/len(vec)]) + ",")
         elif var3 is None and var2 is not None:
             if dist == False:
                 print(name +" &  " +  str(entropy([nb0/len(vec),nb1/len(vec),nb2/len(vec)]))+ ",")
             else:
-                print("{"+name +":" +  str([nb0/len(vec),nb1/len(vec),nb2/len(vec)]) +"},")
+                print("\""+name +"\":" +  str([nb0/len(vec),nb1/len(vec),nb2/len(vec)]) +",")
         elif var3 is not None and var2 is not None:
             if dist == False:
                 print(name +" &  " +  str(entropy([nb0/len(vec),nb1/len(vec),nb2/len(vec),nb3/len(vec)]))+ " \\\ \hline")
             else:
-                print("{"+name +":"+ str([nb0/len(vec),nb1/len(vec),nb2/len(vec),nb3/len(vec)]) +"},")
+                print("\""+name +"\":"+ str([nb0/len(vec),nb1/len(vec),nb2/len(vec),nb3/len(vec)]) +",")
 
 def cond_entropy(dist_x_y, dist_data, name = None):
     dist_x_y = np.matrix(dist_x_y)
@@ -75,6 +78,8 @@ def entropy_of_mediacal_data():
     Question 6 : Computation of the entropy of each varible.
     """
     # start_table()
+    print("{\"dist\": [")
+    print("{")
     data_processing(data,'age', var0 = 'lessorequalthan40', var1 ='morethan40' , dist = True)
     data_processing(data,'sex',var0='man',var1 = 'woman' , dist = True)
     data_processing(data,'obesity',var0 = 'thin', var1 = 'regular', var2= 'overweigh', dist = True)
@@ -92,6 +97,7 @@ def entropy_of_mediacal_data():
     data_processing(data,'BIL',var0 ='abnormal', var1='normal', dist = True)
     data_processing(data,'ITC',var0 = 'yes', var1= 'no', dist = True)
     data_processing(data,'JAU',var0 = 'yes', var1= 'no', dist = True)
+    print("}]}")
     # end_table(caption = "Entropy of each variable from mediaclDB")
 
 
