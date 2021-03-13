@@ -21,7 +21,7 @@ def end_table(caption=None):
     print("\label{tab:my_label}")
     print("\end{table}")
 
-def data_processing(data,name,var0, var1 , var2 = None, var3 = None, dist = True,display = True):
+def data_processing(data,name,var0, var1 , var2 = None, var3 = None, dist = True,display = True, counter = None):
     vec = []
     nb0 = 0
     nb1 = 0
@@ -47,20 +47,18 @@ def data_processing(data,name,var0, var1 , var2 = None, var3 = None, dist = True
         if var2 is None and var3 is None:
             if dist == False:
                 print(name +" &  " +  str(entropy([nb0/len(vec),nb1/len(vec)])) + " \\\ \hline")
-            elif name == "JAU":
-                print("\""+name +"\":"+ str([nb0/len(vec),nb1/len(vec),nb2/len(vec),nb3/len(vec)]) +",")
             else:
-                print("\""+name +"\":"+ str([nb0/len(vec),nb1/len(vec),nb2/len(vec),nb3/len(vec)]) +",")
+                counter[name]=[nb0/len(vec),nb1/len(vec),nb2/len(vec),nb3/len(vec)]
         elif var3 is None and var2 is not None:
             if dist == False:
                 print(name +" &  " +  str(entropy([nb0/len(vec),nb1/len(vec),nb2/len(vec)]))+ ",")
             else:
-                print("\""+name +"\":"+ str([nb0/len(vec),nb1/len(vec),nb2/len(vec),nb3/len(vec)]) +",")
+                counter[name]=[nb0/len(vec),nb1/len(vec),nb2/len(vec),nb3/len(vec)]
         elif var3 is not None and var2 is not None:
             if dist == False:
                 print(name +" &  " +  str(entropy([nb0/len(vec),nb1/len(vec),nb2/len(vec),nb3/len(vec)]))+ " \\\ \hline")
             else:
-                print("\""+name +"\":"+ str([nb0/len(vec),nb1/len(vec),nb2/len(vec),nb3/len(vec)]) +",")
+                counter[name]=[nb0/len(vec),nb1/len(vec),nb2/len(vec),nb3/len(vec)]
 
 def cond_entropy(dist_x_y, dist_data, name = None):
     dist_x_y = np.matrix(dist_x_y)
@@ -78,26 +76,25 @@ def entropy_of_mediacal_data():
     Question 6 : Computation of the entropy of each varible.
     """
     # start_table()
-    print("{\"dist\": [")
-    print("{")
-    data_processing(data,'age', var0 = 'lessorequalthan40', var1 ='morethan40' , dist = True,counter)
-    data_processing(data,'sex',var0='man',var1 = 'woman' , dist = True,counter)
-    data_processing(data,'obesity',var0 = 'thin', var1 = 'regular', var2= 'overweigh', dist = True,counter)
-    data_processing(data,'ALC',var0 = 'yes', var1= 'no', dist = True,counter)
-    data_processing(data,'iron', var0 ='low',var1 ='normal',var2 ='high',var3 ='very high', dist = True,counter)
-    data_processing(data,'DIS',var0 = 'healthy',var1= 'PBC', var2='steatosis' , dist = True,counter)
-    data_processing(data,'fatigue',var0 = 'yes', var1= 'no', dist = True,counter)
-    data_processing(data,'TRI', var0 ='abnormal', var1='normal', dist = True,counter)
-    data_processing(data,'ALT', var0 ='abnormal', var1='normal', dist = True,counter)
-    data_processing(data,'AST', var0 ='abnormal', var1='normal', dist = True,counter)
-    data_processing(data,'GGTP',var0 ='abnormal', var1='normal', dist = True,counter)
-    data_processing(data,'CHL',var0 ='low',var1 ='normal',var2 ='high', dist = True,counter)
-    data_processing(data,'AMA',var0 = 'yes', var1= 'no', dist = True,counter)
-    data_processing(data,'MSC',var0 = 'yes', var1= 'no', dist = True,counter)
-    data_processing(data,'BIL',var0 ='abnormal', var1='normal', dist = True,counter)
-    data_processing(data,'ITC',var0 = 'yes', var1= 'no', dist = True,counter)
-    data_processing(data,'JAU',var0 = 'yes', var1= 'no', dist = True,counter)
-    print("}]}")
+    counter_dic = {}
+    data_processing(data,'age', var0 = 'lessorequalthan40', var1 ='morethan40' , dist = True,counter=counter_dic)
+    data_processing(data,'sex',var0='man',var1 = 'woman' , dist = True,counter=counter_dic)
+    data_processing(data,'obesity',var0 = 'thin', var1 = 'regular', var2= 'overweigh', dist = True,counter=counter_dic)
+    data_processing(data,'ALC',var0 = 'yes', var1= 'no', dist = True,counter=counter_dic)
+    data_processing(data,'iron', var0 ='low',var1 ='normal',var2 ='high',var3 ='very high', dist = True,counter=counter_dic)
+    data_processing(data,'DIS',var0 = 'healthy',var1= 'PBC', var2='steatosis' , dist = True,counter=counter_dic)
+    data_processing(data,'fatigue',var0 = 'yes', var1= 'no', dist = True,counter=counter_dic)
+    data_processing(data,'TRI', var0 ='abnormal', var1='normal', dist = True,counter=counter_dic)
+    data_processing(data,'ALT', var0 ='abnormal', var1='normal', dist = True,counter=counter_dic)
+    data_processing(data,'AST', var0 ='abnormal', var1='normal', dist = True,counter=counter_dic)
+    data_processing(data,'GGTP',var0 ='abnormal', var1='normal', dist = True,counter=counter_dic)
+    data_processing(data,'CHL',var0 ='low',var1 ='normal',var2 ='high', dist = True,counter=counter_dic)
+    data_processing(data,'AMA',var0 = 'yes', var1= 'no', dist = True,counter=counter_dic)
+    data_processing(data,'MSC',var0 = 'yes', var1= 'no', dist = True,counter=counter_dic)
+    data_processing(data,'BIL',var0 ='abnormal', var1='normal', dist = True,counter=counter_dic)
+    data_processing(data,'ITC',var0 = 'yes', var1= 'no', dist = True,counter=counter_dic)
+    data_processing(data,'JAU',var0 = 'yes', var1= 'no', dist = True,counter=counter_dic)
+    print(counter_dic)
     # end_table(caption = "Entropy of each variable from mediaclDB")
 
 
@@ -106,11 +103,11 @@ def entropy_of_mediacal_data():
     """
 
 
-
-    start_table()
-    for i in head_without_DIS:
-        cond_entropy(pd.crosstab(data['DIS'],data[i],margins = False,normalize = True),dist_data,name = i)
-    end_table(caption = "Conditional entropy of the disease given each variables from mediaclDB")
+    # 
+    # start_table()
+    # for i in head_without_DIS:
+    #     cond_entropy(pd.crosstab(data['DIS'],data[i],margins = False,normalize = True),dist_data,name = i)
+    # end_table(caption = "Conditional entropy of the disease given each variables from mediaclDB")
 
 
 
