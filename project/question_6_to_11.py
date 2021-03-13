@@ -21,7 +21,7 @@ def end_table(caption=None):
     print("\label{tab:my_label}")
     print("\end{table}")
 
-def data_processing(data,name,var0, var1 , var2 = None, var3 = None, dist = False,display = True):
+def data_processing(data,name,var0, var1 , var2 = None, var3 = None, dist = True,display = True):
     vec = []
     nb0 = 0
     nb1 = 0
@@ -67,31 +67,32 @@ def entropy_of_mediacal_data():
     data = pd.read_csv('P1_medicalDB.csv')
     dist_data = pd.read_json('dist.json')
 
+
     head_without_DIS = ['age','sex','obesity','ALC','iron','fatigue','TRI','ALT','AST','GGTP','CHL','AMA','MSC','BIL','ITC','JAU']
 
 
     """
     Question 6 : Computation of the entropy of each varible.
     """
-    start_table()
-    data_processing(data,'age', var0 = 'lessorequalthan40', var1 ='morethan40' , dist = False)
-    data_processing(data,'sex',var0='man',var1 = 'woman' , dist = False)
-    data_processing(data,'obesity',var0 = 'thin', var1 = 'regular', var2= 'overweigh', dist = False)
-    data_processing(data,'ALC',var0 = 'yes', var1= 'no', dist = False)
-    data_processing(data,'iron', var0 ='low',var1 ='normal',var2 ='high',var3 ='very high', dist = False)
-    data_processing(data,'DIS',var0 = 'healthy',var1= 'PBC', var2='steatosis' , dist = False)
-    data_processing(data,'fatigue',var0 = 'yes', var1= 'no', dist = False)
-    data_processing(data,'TRI', var0 ='abnormal', var1='normal', dist = False)
-    data_processing(data,'ALT', var0 ='abnormal', var1='normal', dist = False)
-    data_processing(data,'AST', var0 ='abnormal', var1='normal', dist = False)
-    data_processing(data,'GGTP',var0 ='abnormal', var1='normal', dist = False)
-    data_processing(data,'CHL',var0 ='low',var1 ='normal',var2 ='high', dist = False)
-    data_processing(data,'AMA',var0 = 'yes', var1= 'no', dist = False)
-    data_processing(data,'MSC',var0 = 'yes', var1= 'no', dist = False)
-    data_processing(data,'BIL',var0 ='abnormal', var1='normal', dist = False)
-    data_processing(data,'ITC',var0 = 'yes', var1= 'no', dist = False)
-    data_processing(data,'JAU',var0 = 'yes', var1= 'no', dist = False)
-    end_table(caption = "Entropy of each variable from mediaclDB")
+    # start_table()
+    data_processing(data,'age', var0 = 'lessorequalthan40', var1 ='morethan40' , dist = True)
+    data_processing(data,'sex',var0='man',var1 = 'woman' , dist = True)
+    data_processing(data,'obesity',var0 = 'thin', var1 = 'regular', var2= 'overweigh', dist = True)
+    data_processing(data,'ALC',var0 = 'yes', var1= 'no', dist = True)
+    data_processing(data,'iron', var0 ='low',var1 ='normal',var2 ='high',var3 ='very high', dist = True)
+    data_processing(data,'DIS',var0 = 'healthy',var1= 'PBC', var2='steatosis' , dist = True)
+    data_processing(data,'fatigue',var0 = 'yes', var1= 'no', dist = True)
+    data_processing(data,'TRI', var0 ='abnormal', var1='normal', dist = True)
+    data_processing(data,'ALT', var0 ='abnormal', var1='normal', dist = True)
+    data_processing(data,'AST', var0 ='abnormal', var1='normal', dist = True)
+    data_processing(data,'GGTP',var0 ='abnormal', var1='normal', dist = True)
+    data_processing(data,'CHL',var0 ='low',var1 ='normal',var2 ='high', dist = True)
+    data_processing(data,'AMA',var0 = 'yes', var1= 'no', dist = True)
+    data_processing(data,'MSC',var0 = 'yes', var1= 'no', dist = True)
+    data_processing(data,'BIL',var0 ='abnormal', var1='normal', dist = True)
+    data_processing(data,'ITC',var0 = 'yes', var1= 'no', dist = True)
+    data_processing(data,'JAU',var0 = 'yes', var1= 'no', dist = True)
+    # end_table(caption = "Entropy of each variable from mediaclDB")
 
 
     """
@@ -100,26 +101,25 @@ def entropy_of_mediacal_data():
 
 
 
-    start_table()
-    for i in head_without_DIS:
-        cond_entropy(pd.crosstab(data['DIS'],data[i],margins = False,normalize = True),dist_data,name = i)
-    end_table(caption = "Conditional entropy of the disease given each variables from mediaclDB")
-
-
+    # start_table()
+    # for i in head_without_DIS:
+    #     cond_entropy(pd.crosstab(data['DIS'],data[i],margins = False,normalize = True),dist_data,name = i)
+    # end_table(caption = "Conditional entropy of the disease given each variables from mediaclDB")
+    #
 
 
     """
     Question 8 : Computation of the mutual information between the varibles obesity and age.
     """
-    dist_x_y = pd.crosstab(data['obesity'],data['age'],margins = False,normalize = True)
-    print(mutual_information(np.matrix(dist_x_y),dist_data['dist'][0]['obesity'],dist_data['dist'][0]['age']))
-
-    for i in head_without_DIS:
-
-        print("##############################################################")
-        print(pd.crosstab(data['DIS'],data[i],margins = False,normalize = True))
-        print("##############################################################")
-
-    for i in head_without_DIS:
-        dist_x_y = pd.crosstab(data['DIS'],data[i],margins = False,normalize = True)
-        print(i +": "+ str( mutual_information(np.matrix(dist_x_y),dist_data['dist'][0]['obesity'],dist_data['dist'][0][i])))
+    # dist_x_y = pd.crosstab(data['obesity'],data['age'],margins = False,normalize = True)
+    # print(mutual_information(np.matrix(dist_x_y),dist_data['dist'][0]['obesity'],dist_data['dist'][0]['age']))
+    #
+    # for i in head_without_DIS:
+    #
+    #     print("##############################################################")
+    #     print(pd.crosstab(data['DIS'],data[i],margins = False,normalize = True))
+    #     print("##############################################################")
+    #
+    # for i in head_without_DIS:
+    #     dist_x_y = pd.crosstab(data['DIS'],data[i],margins = False,normalize = True)
+    #     print(i +": "+ str( mutual_information(np.matrix(dist_x_y),dist_data['dist'][0]['obesity'],dist_data['dist'][0][i])))
