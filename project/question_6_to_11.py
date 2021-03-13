@@ -60,9 +60,10 @@ def data_processing(data,name,var0, var1 , var2 = None, var3 = None, dist = True
             else:
                 counter[name]=[nb0/len(vec),nb1/len(vec),nb2/len(vec),nb3/len(vec)]
 
-def cond_entropy(dist_x_y, dist_data, name = None):
+def cond_entropy(dist_x_y, counter = None, name = None):
     dist_x_y = np.matrix(dist_x_y)
-    print(name +" &  " +str(conditional_entropy(dist_x_y, dist_data['dist'][0]['DIS']))+ " \\\ \hline")
+
+    print(name +" &  " +str(conditional_entropy(dist_x_y, counter['DIS']))+ " \\\ \hline")
 
 def entropy_of_mediacal_data():
     data = pd.read_csv('P1_medicalDB.csv')
@@ -103,11 +104,11 @@ def entropy_of_mediacal_data():
     """
 
 
-    # 
-    # start_table()
-    # for i in head_without_DIS:
-    #     cond_entropy(pd.crosstab(data['DIS'],data[i],margins = False,normalize = True),dist_data,name = i)
-    # end_table(caption = "Conditional entropy of the disease given each variables from mediaclDB")
+
+    start_table()
+    for i in head_without_DIS:
+        cond_entropy(pd.crosstab(data['DIS'],data[i],margins = False,normalize = True),counter = counter_dic,name = i)
+    end_table(caption = "Conditional entropy of the disease given each variables from mediaclDB")
 
 
 
