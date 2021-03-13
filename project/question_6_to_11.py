@@ -48,14 +48,14 @@ def data_processing(data,name,var0, var1 , var2 = None, var3 = None, dist = True
             if dist == False:
                 print(name +" &  " +  str(entropy([nb0/len(vec),nb1/len(vec)])) + " \\\ \hline")
             elif name == "JAU":
-                print("\""+name +"\":" +  str([nb0/len(vec),nb1/len(vec)]) )
+                print("\""+name +"\":"+ str([nb0/len(vec),nb1/len(vec),nb2/len(vec),nb3/len(vec)]) +",")
             else:
-                print("\""+name +"\":" +  str([nb0/len(vec),nb1/len(vec)]) + ",")
+                print("\""+name +"\":"+ str([nb0/len(vec),nb1/len(vec),nb2/len(vec),nb3/len(vec)]) +",")
         elif var3 is None and var2 is not None:
             if dist == False:
                 print(name +" &  " +  str(entropy([nb0/len(vec),nb1/len(vec),nb2/len(vec)]))+ ",")
             else:
-                print("\""+name +"\":" +  str([nb0/len(vec),nb1/len(vec),nb2/len(vec)]) +",")
+                print("\""+name +"\":"+ str([nb0/len(vec),nb1/len(vec),nb2/len(vec),nb3/len(vec)]) +",")
         elif var3 is not None and var2 is not None:
             if dist == False:
                 print(name +" &  " +  str(entropy([nb0/len(vec),nb1/len(vec),nb2/len(vec),nb3/len(vec)]))+ " \\\ \hline")
@@ -107,11 +107,11 @@ def entropy_of_mediacal_data():
 
 
 
-    # start_table()
-    # for i in head_without_DIS:
-    #     cond_entropy(pd.crosstab(data['DIS'],data[i],margins = False,normalize = True),dist_data,name = i)
-    # end_table(caption = "Conditional entropy of the disease given each variables from mediaclDB")
-    #
+    start_table()
+    for i in head_without_DIS:
+        cond_entropy(pd.crosstab(data['DIS'],data[i],margins = False,normalize = True),dist_data,name = i)
+    end_table(caption = "Conditional entropy of the disease given each variables from mediaclDB")
+    
 
 
     """
