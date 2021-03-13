@@ -39,7 +39,15 @@ if __name__ == "__main__":
                 ,[1/32,1/32,1/16,0]
                 ,[1/32,1/32,1/16,0]])
 
-    print(conditional_entropy(dist_x_y, [1/4,1/4,1/4,1/4] ))
+    print(np.sum(dist_x_y))
+    cond_dist = np.matrix([
+                [1/4,1/4,1/4,1/4],
+                [1/2,1/8,1/8,1/4],
+                [1/4,1/2,1/8,1/8],
+                [1/4,1/4,1/4,1/4]])
+    print(np.sum(cond_dist))
+
+    print(conditional_entropy(cond_dist, [1/4, 1/8, 1/8, 1/2]))
 
     # board.entropy_of_board()
     # print(entropy(dist_y))

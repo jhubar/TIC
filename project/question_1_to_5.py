@@ -36,16 +36,14 @@ def joint_entropy(dist_x_y):
     return h
 
 def conditional_entropy(dist_x_y, cond_d):
-    """
-    Quesiton 3: compute the conditional entropy of a two discrete random varibles
-    """
     h = 0
     for p_y in range(dist_x_y.shape[0]):
         for p_x in range(dist_x_y.shape[1]):
+            # Get the conditional P(X_i|y_j)
             r = dist_x_y[p_y,p_x]
             cond = cond_d[p_y]
             if r != 0 and cond != 0:
-                h += -r * np.log2(r/cond)
+                h += -1 * (r * cond * np.log2(r))
     return h
 
 def mutual_information(dist_x_y, dist_x, dist_y):
@@ -57,11 +55,8 @@ def mutual_information(dist_x_y, dist_x, dist_y):
     return entropy(dist_x) + entropy(dist_y) - joint_entropy(dist_x_y)
 
 
+
 def cond_joint_entropy(dist_x_y_z, cond_d):
-    """
-    Quesiton 5: compute the conditional joint entropy of a two discrete random
-                varibles knowing an another one
-    """
     h = 0
     for p_y in dist_x_y_z.shape[0]:
         for p_x in dist_x_y_z.shape[1]:
@@ -69,8 +64,8 @@ def cond_joint_entropy(dist_x_y_z, cond_d):
                 r = dist_x_y_z[p_y,p_x,p_z]
                 cond = cond_d[p_z]
                 if r != 0 and cond != 0:
-                    h += -r * np.log(r/cond)
-    return h/np.log(2)
+                    h += -1 * (r * cond * np.log2(r))
+    return h
 
 def cond_mutual_entropy(dist_x, dist_y_z, dist_x_y_Z , cond_d):
     """

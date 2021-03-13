@@ -101,22 +101,8 @@ def entropy_of_mediacal_data():
 
 
     start_table()
-    cond_entropy(pd.crosstab(data['DIS'],data['age'],margins = False,normalize = True),dist_data,name = 'age')
-    cond_entropy(pd.crosstab(data['DIS'],data['sex'],margins = False,normalize = True),dist_data,name = 'sex')
-    cond_entropy(pd.crosstab(data['DIS'],data['obesity'],margins = False,normalize = True),dist_data,name = "obesity")
-    cond_entropy(pd.crosstab(data['DIS'],data['ALC'],margins = False,normalize = True),dist_data,name = "ALC")
-    cond_entropy(pd.crosstab(data['DIS'],data['iron'],margins = False,normalize = True),dist_data,name = "iron")
-    cond_entropy(pd.crosstab(data['DIS'],data['fatigue'],margins = False,normalize = True),dist_data,name = "fatigue")
-    cond_entropy(pd.crosstab(data['DIS'],data['TRI'],margins = False,normalize = True),dist_data,name = "TRI")
-    cond_entropy(pd.crosstab(data['DIS'],data['ALT'],margins = False,normalize = True),dist_data,name = "ALT")
-    cond_entropy(pd.crosstab(data['DIS'],data['AST'],margins = False,normalize = True),dist_data,name = "AST")
-    cond_entropy(pd.crosstab(data['DIS'],data['GGTP'],margins = False,normalize = True),dist_data,name = "GGTP")
-    cond_entropy(pd.crosstab(data['DIS'],data['CHL'],margins = False,normalize = True),dist_data,name = "CHL")
-    cond_entropy(pd.crosstab(data['DIS'],data['AMA'],margins = False,normalize = True),dist_data,name = "AMA")
-    cond_entropy(pd.crosstab(data['DIS'],data['MSC'],margins = False,normalize = True),dist_data,name = "MSC")
-    cond_entropy(pd.crosstab(data['DIS'],data['BIL'],margins = False,normalize = True),dist_data,name = "BIL")
-    cond_entropy(pd.crosstab(data['DIS'],data['ITC'],margins = False,normalize = True),dist_data,name = "ITC")
-    cond_entropy(pd.crosstab(data['DIS'],data['JAU'],margins = False,normalize = True),dist_data,name = "JAU")
+    for i in head_without_DIS:
+        cond_entropy(pd.crosstab(data['DIS'],data[i],margins = False,normalize = True),dist_data,name = i)
     end_table(caption = "Conditional entropy of the disease given each variables from mediaclDB")
 
 
