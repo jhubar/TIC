@@ -115,15 +115,15 @@ def entropy_of_mediacal_data():
     """
     Question 8 : Computation of the mutual information between the varibles obesity and age.
     """
-    # dist_x_y = pd.crosstab(data['obesity'],data['age'],margins = False,normalize = True)
-    # print(mutual_information(np.matrix(dist_x_y),dist_data['dist'][0]['obesity'],dist_data['dist'][0]['age']))
-    #
-    # for i in head_without_DIS:
-    #
-    #     print("##############################################################")
-    #     print(pd.crosstab(data['DIS'],data[i],margins = False,normalize = True))
-    #     print("##############################################################")
-    #
-    # for i in head_without_DIS:
-    #     dist_x_y = pd.crosstab(data['DIS'],data[i],margins = False,normalize = True)
-    #     print(i +": "+ str( mutual_information(np.matrix(dist_x_y),dist_data['dist'][0]['obesity'],dist_data['dist'][0][i])))
+    dist_x_y = pd.crosstab(data['obesity'],data['age'],margins = False,normalize = True)
+    print(mutual_information(np.matrix(dist_x_y),dist_data['dist'][0]['obesity'],dist_data['dist'][0]['age']))
+
+    for i in head_without_DIS:
+
+        print("##############################################################")
+        print(pd.crosstab(data['DIS'],data[i],margins = False,normalize = True))
+        print("##############################################################")
+
+    for i in head_without_DIS:
+        dist_x_y = pd.crosstab(data['DIS'],data[i],margins = False,normalize = True)
+        print(i +": "+ str( mutual_information(np.matrix(dist_x_y),dist_data['dist'][0]['obesity'],dist_data['dist'][0][i])))

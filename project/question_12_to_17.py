@@ -9,6 +9,7 @@ Implementation of question 12 to 17
 """
 import numpy as np
 from question_1_to_5 import *
+
 class Board():
 
     def __init__(self, r = 0, c = 0, m=0 ):
@@ -30,6 +31,8 @@ class Board():
                     break
                 elif self._grid[i][j] == 0:
                     num -= 1
+                    if num == 0:
+                        break
                     print(str(num)+"/"+str(den)+" = "+str( -np.log2(num/den)))
                     nb_bits.append(-np.log2(num/den))
                     den -= 1
@@ -43,9 +46,10 @@ class Board():
 
 
 
-    def entropy_of_board(self, nums = np.random.choice([1, 0], size=self._size, p=[self._m, 1-self._m])):
+    def entropy_of_board(self, nums = None ):
 
-
+        if nums == None:
+            nums = np.random.choice([1, 0], size=self._size, p=[self._m, 1-self._m])
         self._grid = np.reshape(nums,(self._r,self._c))
         print(self._grid)
 
@@ -55,8 +59,8 @@ class Board():
 
 
 if __name__ == "__main__":
-    grid = np.reshape([0,1,2,3,2,1,2,],(5,2))
+    # grid = np.reshape([0,1,2,3,2,1,2,0,0,0,1,0,0,0,0],(5,2))
     board = Board(4,4,2)
     board.entropy_of_board(nums = [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    print( -np.log2(14/15) + -np.log2(13/14) - )
+    #
     board.entropy_of_each_field_in_foard()
