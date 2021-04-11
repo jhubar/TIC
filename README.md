@@ -2,6 +2,7 @@
 
 ## Report
 - [Project 1](https://www.overleaf.com/2499969642khfkrkftddsg)
+- [project 2](https://www.overleaf.com/9839661766sbbvjtkdyvtt)
 
 ## Agenda
 | Date | Topic |
