@@ -18,22 +18,22 @@ class Hoffman_tree():
 class Huffman():
 
     def __init__(self, sequence):
+        self.frequency = {}
+        self.flag = True
         if(type(sequence) is list):
             if type(sequence[0]) is int :
                 sequence = [str(int) for int in sequence]
                 sequence = "".join(sequence)
             else:
                 sequence = np.array(sequence)
-                c = Counter(sequence)
-                print(c)
-                sequence = np.array([v for k,v in c.items() ])
-                sequence = [str(int) for int in sequence]
-                sequence = "".join(sequence)
+                self.frequency = Counter(sequence)
+                flag = False
+
 
 
         self.sequence = sequence
         self.huffman_compression = {}
-        self.frequency = {}
+
         self.nodes = {}
         self.huffman_code = []
 
@@ -47,6 +47,7 @@ class Huffman():
         return d
 
     def compute_frequency(self):
+
         for i in self.sequence:
             if i in self.frequency:
                 self.frequency[i] += 1
@@ -69,10 +70,11 @@ class Huffman():
             self.nodes.append((node, item_1 + item_2))
 
             self.nodes = self.super_sort(list = self.nodes)
-            print(self.nodes)
+
 
     def run_hoffman_code(self):
-        self.compute_frequency()
+        if self.flag == True:
+            self.compute_frequency()
         self.nodes = self.super_sort(dict = self.frequency)
         self.create_tree()
 
