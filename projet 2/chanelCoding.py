@@ -9,6 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random 
 import re
+import time
 
 from utils import *
 
@@ -52,23 +53,25 @@ class coding():
     def simulate_and_decode(self):
         self.simulate_channel()
         self.channelized_data = re.findall('.{1,8}', self.channelized_data)
-        
-        print(int(11271271,2))
-        print(bin_to_dec(self.channelized_data[0]))
-        
-        
-        self.decoded_data = np.array([bin_to_dec(val) for val in self.channelized_data],dtype=np.uint8)
+        self.decoded_data = np.array([format(int(i),'b') for i in self.channelized_data])
+        plt.plot(self.decoded_data)
+        plt.show()
 
-    # def plot_sound_signal(self, data = None):
-    #     if data is None:
-    #         self.time = np.arange(0,self.data,1/self.rate) #time vector
-    #         plt.plot(self.time,self.data)
-    #     else:
-    #         self.time = np.arange(0,data,1/self.rate) #time vector
-    #         plt.plot(self.time,data)
-    #     plt.xlabel('Time [s]')
-    #     plt.ylabel('Amplitude')
-    #     plt.title("wav")
-    #     plt.savefig("fig/wav.pdf")
-    #     plt.show()
-    #     plt.close()
+    def plot_sound_signal(self, data = None):
+        if data is None:
+            self.time = np.arange(0,self.data,1/self.rate) #time vector
+            plt.plot(self.time,self.data)
+        else:
+            self.time = np.arange(0,data,1/self.rate) #time vector
+            plt.plot(self.time,data)
+        plt.xlabel('Time [s]')
+        plt.ylabel('Amplitude')
+        plt.title("wav")
+        plt.savefig("fig/wav.pdf")
+        plt.show()
+        plt.close()
+        
+    def start_clock(self):
+        return time.time()
+    
+    
