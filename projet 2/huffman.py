@@ -20,15 +20,13 @@ class Huffman():
     def __init__(self, sequence):
         self.frequency = {}
         self.flag = True
+        
         if(type(sequence) is list):
-            if type(sequence[0]) is int :
-                sequence = [str(int) for int in sequence]
-                sequence = "".join(sequence)
-            else:
+            if type(sequence[0]) is not str :
                 sequence = np.array(sequence)
-                self.frequency = Counter(sequence)
-                flag = False
-
+                self.frequency = dict(Counter(sequence))
+                self.frequency = {str(k):int(v) for k,v in self.frequency.items()}               
+                self.flag = False
 
 
         self.sequence = sequence
@@ -73,19 +71,22 @@ class Huffman():
 
 
     def run_hoffman_code(self):
+        
         if self.flag == True:
-            self.compute_frequency()
+            self.compute_frequency()  
+        print(self.frequency)  
         self.nodes = self.super_sort(dict = self.frequency)
+        print(self.nodes)  
         self.create_tree()
 
         self.huffman_code = self.huffman_code_tree(self.nodes[0][0])
 
-        print(self.frequency)
+        
 
 
 
     def print_huffman_code(self):
         print(' Occurance | Huffman code ')
-        print('----------------------')
+        print('--------------------------')
         for (item, code) in self.super_sort(dict = self.frequency):
-            print(' %-4r |%12s' % (item, self.huffman_code[item]))
+            print(' %-6r    |%14s' % (item, self.huffman_code[item]))
