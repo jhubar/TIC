@@ -21,6 +21,7 @@ class coding():
         self.duration = len(self.data)/self.rate
         self.bin_data = ""
         self.channelized_data = ""
+        
         self.num_of_bits = 8
         self.probability = 0.01
         self.decoded_data = []
@@ -51,20 +52,23 @@ class coding():
     def simulate_and_decode(self):
         self.simulate_channel()
         self.channelized_data = re.findall('.{1,8}', self.channelized_data)
-        for i in self.channelized_data:
-            self.channelized_data.append(bin_to_dec(i),dtype=np.uint8)
-        # self.decoded_data = np.array([bin_to_dec(val) for val in self.channelized_data],dtype=np.uint8)
+        
+        print(int(11271271,2))
+        print(bin_to_dec(self.channelized_data[0]))
+        
+        
+        self.decoded_data = np.array([bin_to_dec(val) for val in self.channelized_data],dtype=np.uint8)
 
-    def plot_sound_signal(self, data = None):
-        if data is None:
-            self.time = np.arange(0,self.data,1/self.rate) #time vector
-            plt.plot(self.time,self.data)
-        else:
-            self.time = np.arange(0,data,1/self.rate) #time vector
-            plt.plot(self.time,data)
-        plt.xlabel('Time [s]')
-        plt.ylabel('Amplitude')
-        plt.title("wav")
-        plt.savefig("fig/wav.pdf")
-        plt.show()
-        plt.close()
+    # def plot_sound_signal(self, data = None):
+    #     if data is None:
+    #         self.time = np.arange(0,self.data,1/self.rate) #time vector
+    #         plt.plot(self.time,self.data)
+    #     else:
+    #         self.time = np.arange(0,data,1/self.rate) #time vector
+    #         plt.plot(self.time,data)
+    #     plt.xlabel('Time [s]')
+    #     plt.ylabel('Amplitude')
+    #     plt.title("wav")
+    #     plt.savefig("fig/wav.pdf")
+    #     plt.show()
+    #     plt.close()

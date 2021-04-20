@@ -29,5 +29,5 @@ if __name__ == "__main__":
     # coding.plot_sound_signal()
     coding.encode_sound_signal()
     coding.simulate_and_decode()
-    coding.plot_sound_signal(coding.decoded_data)
+    # coding.plot_sound_signal(coding.decoded_data)
 
