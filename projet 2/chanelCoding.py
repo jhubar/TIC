@@ -53,8 +53,8 @@ class coding():
         self.simulate_channel()
         self.channelized_data = re.findall('.{1,8}', self.channelized_data)
         
-        print(int(11271271,2))
-        print(bin_to_dec(self.channelized_data[0]))
+        print(format(11271271, 'b'))
+        #print(bin_to_dec(self.channelized_data[0]))
         
         
         self.decoded_data = np.array([bin_to_dec(val) for val in self.channelized_data],dtype=np.uint8)
