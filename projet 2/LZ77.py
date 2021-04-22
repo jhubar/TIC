@@ -91,19 +91,6 @@ class LZ77():
         return decoded
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 class LZ_Buff():
 
     def __init__(self, sample, size):

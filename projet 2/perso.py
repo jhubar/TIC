@@ -1,5 +1,5 @@
 
-from LempelZiv import *
+from LZ77 import *
 
 
 test = LZ77(l=3)
