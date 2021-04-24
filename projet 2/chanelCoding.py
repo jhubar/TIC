@@ -12,7 +12,7 @@ import re
 import time
 
 from utils import *
-
+from hamming import *
 
 class chanelCoding():
     def __init__(self):
@@ -32,8 +32,8 @@ class chanelCoding():
 
     def binarize_data(self):
         for i in self.data:
-            self.bin_data += binarize(i,int(self.num_of_bits))
-        return str(self.bin_data)
+            self.bin_data += binarize(i,nb = int(self.num_of_bits))
+        return self.bin_data
 
     def encode_sound_signal(self):
         self.num_of_bits = np.log2(np.max(self.data) + 1)
@@ -54,38 +54,31 @@ class chanelCoding():
 
 
 
-    def simulate_and_decode(self, input_data):
+    def simulate_and_decode(self, input_data, sound_name):
         self.simulate_channel(input_data)
         self.channelized_data = re.findall('.{1,8}', self.channelized_data)
-        self.data_decoded = np.array([bin_to_dec(val) for val in self.channelized_data],
-                                dtype=np.uint8)
-        # self.decoded_data = np.array([bin_to_dec(val) for val in self.channelized_data],dtype=np.uint8)
+        self.decoded_data = np.array([bin_to_dec(i) for i in self.channelized_data],dtype=np.uint8)
+        # self.plot_sound_signal(input_data = self.decoded_data, sound_name = sound_name, recorded_sound = True)
 
-        # self.decoded_data = np.array([format(int(i),'b') for i in self.channelized_data],dtype=np.uint8)
-        plt.plot(self.decoded_data)
-        plt.xlabel('Time [s]')
-        plt.ylabel('Amplitude')
-        plt.title("wav")
-        plt.savefig("fig/wav decoded.pdf")
-        plt.show()
-        plt.close()
-        save_wav("sound/channelized.wav", self.rate, self.data_decoded)
 
 
     def introduciton_of_redundancy(self):
-        hamming = hamming()
-        self.hamming_encode = hamming.encode(self.bin_data)
+        _hamming = hamming()
+        self.hamming_encode = _hamming.encode(self.bin_data)
 
 
 
-    def plot_sound_signal(self):
-        plt.plot(self.data)
+    def plot_sound_signal(self,input_data ,sound_name, recorded_sound = False):
+        print(sound_name)
+        plt.plot(input_data)
         plt.xlabel('Time [s]')
         plt.ylabel('Amplitude')
         plt.title("wav")
         plt.savefig("fig/wav.pdf")
         plt.show()
         plt.close()
+        if recorded_sound:
+            save_wav("sound/"+sound_name+".wav", self.rate, input_data)
 
     def start_clock(self):
         return time.time()
