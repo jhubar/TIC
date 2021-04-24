@@ -15,8 +15,8 @@ class hamming():
 
 
     def encode(self,data):
-        assert len(data) >= self.encode_number , "The message must be greater or equal to "+str(self.encode)
-        assert len(data) % self.encode_number == 0, "The message must be a multiple of "+str(self.encode)
+        assert len(data) >= self.encode_number
+        assert len(data) % self.encode_number == 0
         code = ""
         i = 0
         while i < len(data):
@@ -31,21 +31,19 @@ class hamming():
         return code
 
     def decode(self,data):
-        assert len(data) >= self.decode_number , "The message must be greater or equal to 7"
-        assert len(data) % self.decode_number == 0, "The message must be a multiple of 7"
+        assert len(data) >= self.decode_number
+        assert len(data) % self.decode_number == 0
         corrected = ""
         i = 0
         while i < len(data):
 
             hamming_code = np.array(list(data[i:i+self.decode_number ]), dtype=int)
             syndrome = (np.matmul(self.parity_check, hamming_code) % 2)
-            if not (syndrome == self.no_error).all():# No error if syndrome is [0, 0, 0]
-
+            if not (syndrome == self.no_error).all():
                 incorrect_bit = self.dict[str(syndrome)]
-
                 hamming_code[incorrect_bit] = (hamming_code[incorrect_bit] + 1) % 2
             # Get message
-            for j in range(self.encode):
-                corrected += binarize(hamming_code[j])
+            for j in range(self.encode_number):
+                corrected += binarize(v=hamming_code[j])
             i+=self.decode_number
         return corrected

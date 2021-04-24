@@ -15,7 +15,7 @@ def run_part_2():
     # 18 introduce redundancy
     coding.introduciton_of_redundancy()
     # 19
-    coding.simulate_and_decode(input_data = coding.hamming_code, sound_name="hamming")
+    coding.simulate_and_decode(input_data = coding.hamming_code, sound_name="hamming", decode = True)
 
 if __name__ == "__main__":
 

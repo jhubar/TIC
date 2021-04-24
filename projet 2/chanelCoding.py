@@ -27,6 +27,7 @@ class chanelCoding():
         self.probability = 0.01
         self.decoded_data = []
         self.hamming_code = None
+        self._hamming = hamming()
         # self.time = np.arange(0,self.data,1/self.rate).all()
 
 
@@ -54,8 +55,10 @@ class chanelCoding():
 
 
 
-    def simulate_and_decode(self, input_data, sound_name):
+    def simulate_and_decode(self, input_data, sound_name, decode = False):
         self.simulate_channel(input_data)
+        if decode:
+            self.channelized_data = self._hamming.decode(self.channelized_data)
         self.channelized_data = re.findall('.{1,8}', self.channelized_data)
         self.decoded_data = np.array([bin_to_dec(i) for i in self.channelized_data],dtype=np.uint8)
         self.plot_sound_signal(input_data = self.decoded_data, sound_name = sound_name, recorded_sound = True)
@@ -63,8 +66,7 @@ class chanelCoding():
 
 
     def introduciton_of_redundancy(self):
-        _hamming = hamming()
-        self.hamming_code = _hamming.encode(self.bin_data)
+        self.hamming_code = self._hamming.encode(self.bin_data)
 
 
 
