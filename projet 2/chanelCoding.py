@@ -65,6 +65,7 @@ class chanelCoding():
         # plt.savefig("fig/wav decoded.pdf")
         plt.show()
         plt.close()
+        save_wav("sound/channelized.wav", self.rate, self.data_decoded)
 
 
     def introduciton_of_redundancy(self):

@@ -12,10 +12,18 @@ def run_part_2():
     # Q16 Encode the sound signal using fixed-length binary code
     coding.encode_sound_signal()
     # Q17 SImulate the chanel on the binary sound signal
+    """
+    Probleme avec la binerazire du prof 
+    """
     coding.simulate_and_decode()
     # 18 introduce redundancy
     coding.introduciton_of_redundancy()
     # 19
+    """
+    Il faut modifier le code de la 17 mais c'est la meme choses pas les
+    même args
+    """
+    coding.simulate_and_decode()
 
 if __name__ == "__main__":
 
