@@ -55,13 +55,13 @@ class chanelCoding():
 
 
 
-    def simulate_and_decode(self, input_data, sound_name, decode = False):
+    def simulate_and_decode(self, input_data, name, decode = False):
         self.simulate_channel(input_data)
         if decode:
             self.channelized_data = self._hamming.decode(self.channelized_data)
         self.channelized_data = re.findall('.{1,8}', self.channelized_data)
         self.decoded_data = np.array([bin_to_dec(i) for i in self.channelized_data],dtype=np.uint8)
-        self.plot_sound_signal(input_data = self.decoded_data, sound_name = sound_name, recorded_sound = True)
+        self.plot_sound_signal(input_data = self.decoded_data, name = name, recorded_sound = True)
 
 
 
@@ -70,17 +70,14 @@ class chanelCoding():
 
 
 
-    def plot_sound_signal(self,input_data ,sound_name, recorded_sound = False):
-        print(sound_name)
+    def plot_sound_signal(self,input_data , name, recorded_sound = False):
+
         plt.plot(input_data)
         plt.xlabel('Time [s]')
         plt.ylabel('Amplitude')
         plt.title("wav")
-        plt.savefig("fig/wav.pdf")
-        plt.show()
+        plt.savefig("fig/"+name+".pdf")
+        # plt.show()
         plt.close()
         if recorded_sound:
-            save_wav("sound/"+sound_name+".wav", self.rate, input_data)
-
-    def start_clock(self):
-        return time.time()
+            save_wav("sound/"+name+".wav", self.rate, input_data)

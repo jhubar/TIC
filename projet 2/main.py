@@ -7,15 +7,15 @@ def run_part_2():
     sound_path = "suppl/sound.wav"
     coding = chanelCoding()
     # Q15 Give the plot of the signal.
-    # coding.plot_sound_signal(input_data = coding.data)
+    coding.plot_sound_signal(input_data = coding.data, name = "original")
     # Q16 Encode the sound signal using fixed-length binary code
     coding.encode_sound_signal()
     # Q17 SImulate the chanel on the binary sound signal
-    # coding.simulate_and_decode(input_data = coding.bin_data, sound_name="channelized")
+    coding.simulate_and_decode(input_data = coding.bin_data, name="channelized")
     # 18 introduce redundancy
     coding.introduciton_of_redundancy()
     # 19
-    coding.simulate_and_decode(input_data = coding.hamming_code, sound_name="hamming", decode = True)
+    coding.simulate_and_decode(input_data = coding.hamming_code, name="hamming", decode = True)
 
 if __name__ == "__main__":
 
