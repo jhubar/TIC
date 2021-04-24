@@ -1,6 +1,6 @@
 import config
 import numpy as np
-import utils
+from utils import *
 
 class hamming():
     def __init__(self):
@@ -15,8 +15,8 @@ class hamming():
 
 
     def encode(self,data):
-        assert len(data) >= self.encode_number , "The message must be greater or equal to 7"
-        assert len(data) % self.encode_number == 0, "The message must be a multiple of 7"
+        assert len(data) >= self.encode_number , "The message must be greater or equal to "+str(self.encode)
+        assert len(data) % self.encode_number == 0, "The message must be a multiple of "+str(self.encode)
         code = ""
         i = 0
         while i < len(data):
@@ -26,7 +26,7 @@ class hamming():
             encoded_message = (np.matmul(code_bit_array, self.generator) % 2)
 
             for code_bit in encoded_message:
-                code += binarize(code_bit)
+                code += binarize(v = code_bit)
             i+=self.encode_number
         return code
 

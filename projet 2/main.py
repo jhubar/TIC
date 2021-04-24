@@ -9,13 +9,13 @@ def run_part_2():
     # Q15 Give the plot of the signal.
     # coding.plot_sound_signal(input_data = coding.data)
     # Q16 Encode the sound signal using fixed-length binary code
-    # coding.encode_sound_signal()
+    coding.encode_sound_signal()
     # Q17 SImulate the chanel on the binary sound signal
     # coding.simulate_and_decode(input_data = coding.bin_data, sound_name="channelized")
     # 18 introduce redundancy
     coding.introduciton_of_redundancy()
     # 19
-    # coding.simulate_and_decode(input_data = coding.hamming_code, sound_name="hamming")
+    coding.simulate_and_decode(input_data = coding.hamming_code, sound_name="hamming")
 
 if __name__ == "__main__":
 
