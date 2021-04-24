@@ -46,7 +46,3 @@ class hamming():
                 corrected += utils.binarize(hamming_code[j])
             i+=self.decode_number
         return corrected
-
-
-if __name__ == "__main__":
-    hamming = hamming()

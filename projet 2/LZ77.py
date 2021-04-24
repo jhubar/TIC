@@ -33,11 +33,9 @@ class LZ77():
             find = False
             while bf_end > 0:
                 tmp = buffer.get_string(end=bf_end)
-                print(tmp)
                 # Find occurences from the end
                 find_idx = self.source_word.rfind(tmp)
                 if find_idx != -1:
-                    print('FIND: tmp: {}, find_idx: {}'.format(tmp, find_idx))
                     offset = buffer.start_idx - find_idx
                     size = len(tmp)
                     # Add the next char to tmp
@@ -66,17 +64,31 @@ class LZ77():
                 self.prev_dist.append(0)
                 buffer.forward(1)
 
+    def decode(self):
 
+        decoded = ''
 
+        # For each tuples of data in the dict
+        for i in range(len(self.new_symbol)):
+            # Get tuple:
+            ll = self.new_symbol[i]
+            dist = self.prev_dist[i]
+            size = self.prev_size[i]
 
+            # If we find an occurence:
+            if dist != 0:
+                start_index = len(decoded) - dist
+                end_index = start_index + size
+                bs = ''.join(decoded[start_index:end_index])
+                decode = '{}{}'.format(bs, ll)
+                print(decode)
+            else:
+                decode = ll
+                print(ll)
 
+            decoded = '{}{}'.format(decoded, decode)
 
-
-
-
-
-
-
+        return decoded
 
 
 class LZ_Buff():

@@ -53,9 +53,18 @@ class coding():
     def simulate_and_decode(self):
         self.simulate_channel()
         self.channelized_data = re.findall('.{1,8}', self.channelized_data)
+<<<<<<< HEAD
         self.decoded_data = np.array([format(int(i),'b') for i in self.channelized_data])
         plt.plot(self.decoded_data)
         plt.show()
+=======
+        
+        print(format(11271271, 'b'))
+        #print(bin_to_dec(self.channelized_data[0]))
+        
+        
+        self.decoded_data = np.array([bin_to_dec(val) for val in self.channelized_data],dtype=np.uint8)
+>>>>>>> db8caee91ce110af84e90bdb0b195756fb0b068c
 
     def plot_sound_signal(self, data = None):
         if data is None:
