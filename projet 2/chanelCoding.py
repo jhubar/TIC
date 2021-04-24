@@ -45,10 +45,10 @@ class chanelCoding():
         for i in input_data:
             uniform = random.uniform(0, 1)
             if uniform <= self.probability:
-                if i != '1':
-                    self.channelized_data += '1'
-                else:
+                if i == '1':
                     self.channelized_data += '0'
+                else:
+                    self.channelized_data += '1'
             else:
                 self.channelized_data += i
 
@@ -57,10 +57,11 @@ class chanelCoding():
     def simulate_and_decode(self, input_data):
         self.simulate_channel(input_data)
         self.channelized_data = re.findall('.{1,8}', self.channelized_data)
-
+        self.data_decoded = np.array([bin_to_dec(val) for val in self.channelized_data],
+                                dtype=np.uint8)
         # self.decoded_data = np.array([bin_to_dec(val) for val in self.channelized_data],dtype=np.uint8)
 
-        self.decoded_data = np.array([format(int(i),'b') for i in self.channelized_data],dtype=np.uint8)
+        # self.decoded_data = np.array([format(int(i),'b') for i in self.channelized_data],dtype=np.uint8)
         plt.plot(self.decoded_data)
         plt.xlabel('Time [s]')
         plt.ylabel('Amplitude')

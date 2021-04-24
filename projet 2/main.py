@@ -6,7 +6,6 @@ from chanelCoding import *
 def run_part_2():
     sound_path = "suppl/sound.wav"
     coding = chanelCoding()
-
     # Q15 Give the plot of the signal.
     coding.plot_sound_signal()
     # Q16 Encode the sound signal using fixed-length binary code
