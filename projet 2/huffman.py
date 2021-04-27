@@ -20,12 +20,12 @@ class Huffman():
     def __init__(self, sequence):
         self.frequency = {}
         self.flag = True
-        
+
         if(type(sequence) is list):
             if type(sequence[0]) is not str :
                 sequence = np.array(sequence)
                 self.frequency = dict(Counter(sequence))
-                self.frequency = {str(k):int(v) for k,v in self.frequency.items()}               
+                self.frequency = {str(k):int(v) for k,v in self.frequency.items()}
                 self.flag = False
 
 
@@ -71,17 +71,16 @@ class Huffman():
 
 
     def run_hoffman_code(self):
-        
+
         if self.flag == True:
-            self.compute_frequency()  
-        print(self.frequency)  
+            self.compute_frequency()
+        # print(self.frequency)
         self.nodes = self.super_sort(dict = self.frequency)
-        print(self.nodes)  
+        # print(self.nodes)
         self.create_tree()
 
         self.huffman_code = self.huffman_code_tree(self.nodes[0][0])
 
-        
 
 
 

@@ -1,28 +1,53 @@
 
 from huffman import *
 from chanelCoding import *
-
+from LZ77 import *
+from Lempel_Zip import *
 def run_part_1():
-    P_S =  'BCAADDDCCACACAC'
-    huffman = Huffman(P_S)
-    huffman.run_hoffman_code()
-    huffman.print_huffman_code()
+    # test hoffman algo
+    # P_S =  'BCAADDDCCACACAC'
+    # huffman = Huffman(P_S)
+    # huffman.run_hoffman_code()
+    # huffman.print_huffman_code()
+    #
+    # Q1
+    # P_S = [0.05, 0.10, 0.15, 0.15, 0.2, 0.35]
+    # huffman = Huffman(P_S)
+    # huffman.run_hoffman_code()
+    # huffman.print_huffman_code()
+
+    #Q2
+
+    lempel_zip = Lempel_zip(config.SEQUENCE)
+    lempel_zip.create_sub_sequence()
+
+    # Q4
+    # test = LZ77(l=3)
+    #
+    # sample = 'BASILE BAVE DANS SON BAVOIR'
+    #
+    # test.encode(sample)
+    #
+    # for i in range(0, len(test.prev_size)):
+    #     print('{} - {} - {} - {}'.format(test.source_word_historique[i],
+    #                                      test.new_symbol[i],
+    #                                      test.prev_dist[i],
+    #                                      test.prev_size[i]))
+    #
+    # print('TEST: =============')
+    # for i in range(0, len(test.new_symbol)):
+    #     print('{} - {} - {}'.format(test.new_symbol[i],
+    #                                 test.prev_dist[i],
+    #                                 test.prev_size[i]))
+    #
+    # print('DECODING: ======================')
+    #
+    # decoded = test.decode()
+    #
+    # print(decoded)
 
 
-    P_S = [ 8, 3, 3, 3, 3]
-    huffman = Huffman(P_S)
-    huffman.run_hoffman_code()
-    huffman.print_huffman_code()
 
-    P_S = [0.05, 0.10, 0.15, 0.15, 0.2, 0.35]
-    huffman = Huffman(P_S)
-    huffman.run_hoffman_code()
-    huffman.print_huffman_code()
-
-
-    coding.encode_sound_signal()
-    coding.simulate_and_decode()
-    coding.plot_sound_signal(coding.decoded_data)
 
 def run_part_2():
     sound_path = "suppl/sound.wav"
@@ -39,5 +64,5 @@ def run_part_2():
     coding.simulate_and_decode(input_data = coding.hamming_code, name="hamming", decode = True)
 
 if __name__ == "__main__":
-    # run_part_1()
-    run_part_2()
+    run_part_1()
+    # run_part_2()
