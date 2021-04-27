@@ -20,6 +20,7 @@ def run_part_1():
 
     lempel_zip = Lempel_zip(config.SEQUENCE)
     lempel_zip.create_sub_sequence()
+    lempel_zip.code_representation()
 
     # Q4
     # test = LZ77(l=3)
