@@ -27,15 +27,11 @@
 ## Link
  * [Web course page](https://people.montefiore.uliege.be/lwh/Info/)
 
-
-## Assigment
-
-| Date | Topic |
-| --- | --- |
-| February 11 | <br> Read slides [here](https://people.montefiore.uliege.be/lwh/Info/ICT_1_introduction.pdf) <br> View video [here]()
-
 ## Nice tuto
 - [Learning Guide and Examples](https://www.cl.cam.ac.uk/teaching/0809/InfoTheory/LearnGuide08.pdf)
+- [lempel zip](https://www.youtube.com/watch?v=V0xA2977fgE&t=185s)
+
+
 
 # Authors
 * [Julien hubar](https://julienhubar.be)
