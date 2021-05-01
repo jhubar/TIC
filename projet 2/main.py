@@ -3,6 +3,7 @@ from huffman import *
 from chanelCoding import *
 from LZ77 import *
 from Lempel_Zip import *
+from genome import *
 def run_part_1():
     # test hoffman algo
     # P_S =  'BCAADDDCCACACAC'
@@ -17,10 +18,12 @@ def run_part_1():
     # huffman.print_huffman_code()
 
     #Q2
+    #
+    # lempel_zip = Lempel_zip(config.SEQUENCE_BIT)
+    # lempel_zip.create_sub_sequence()
+    # lempel_zip.code_representation()
+    # lempel_zip.binary_adddress()
 
-    lempel_zip = Lempel_zip(config.SEQUENCE)
-    lempel_zip.create_sub_sequence()
-    lempel_zip.code_representation()
 
     # Q4
     # test = LZ77(l=3)
@@ -46,6 +49,25 @@ def run_part_1():
     # decoded = test.decode()
     #
     # print(decoded)
+    #Q5
+    gen = import_genome()
+    huffman = Huffman(gen)
+    huffman.run_hoffman_code()
+    huffman.print_huffman_code()
+    dist_gen = count_occ(gen)
+
+    code_length(dist = dist_gen, code_length = huffman.huffman_code)
+
+
+    # print(dist_gen.values())
+    # barplot_dict(dist_gen)
+
+
+
+
+
+
+
 
 
 

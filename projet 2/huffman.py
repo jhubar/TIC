@@ -66,7 +66,6 @@ class Huffman():
             self.nodes = self.nodes[:-2]
             node = Hoffman_tree(key_1, key_2)
             self.nodes.append((node, item_1 + item_2))
-
             self.nodes = self.super_sort(list = self.nodes)
 
 
@@ -74,9 +73,9 @@ class Huffman():
 
         if self.flag == True:
             self.compute_frequency()
-        # print(self.frequency)
+        print(self.frequency)
         self.nodes = self.super_sort(dict = self.frequency)
-        # print(self.nodes)
+        print(self.nodes)
         self.create_tree()
 
         self.huffman_code = self.huffman_code_tree(self.nodes[0][0])
