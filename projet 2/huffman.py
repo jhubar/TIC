@@ -88,3 +88,16 @@ class Huffman():
         print('--------------------------')
         for (item, code) in self.super_sort(dict = self.frequency):
             print(' %-6r    |%14s' % (item, self.huffman_code[item]))
+
+
+
+    def huffman_encoded(self):
+        values = []
+        keys = []
+        for (item, code) in self.super_sort(dict = self.frequency):
+            values.append(item)
+            keys.append(len(self.huffman_code[item]))
+
+        print(dict(zip(keys, values)))
+
+        return dict(zip(keys, values))
