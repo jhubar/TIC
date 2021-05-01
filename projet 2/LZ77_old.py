@@ -1,17 +1,13 @@
 import numpy as np
 import copy
 import os
-from tqdm import tqdm
-import gc
 
 class LZ77():
 
-    def __init__(self, l=7, w=20):
+    def __init__(self, l=3):
 
         # Size of the sliding window
         self.l = l
-        # Size of the left window
-        self.w = w
         # Initialize the dictionary
         self.source_word_historique = ['']
         self.source_word = ''
@@ -24,16 +20,10 @@ class LZ77():
         # Get buffer and fill it
         buffer = LZ_Buff(sample=sample,
                          size=self.l)
-        # Track progress
-        pbar = tqdm(total=len(sample))
+
         # Read all the sample:
-        #gc.enable()
-        total_idx = 0
         while len(buffer) > 0:
-            # Garbage collection
-            if total_idx % 50000 == 0:
-                print('GC')
-                gc.collect()
+
             bf_end = len(buffer)
             # Search occurences
             offset = 0
@@ -41,8 +31,7 @@ class LZ77():
             char = None
             tmp = None
             find = False
-            t = 0
-            while bf_end > 0 and t < self.w:
+            while bf_end > 0:
                 tmp = buffer.get_string(end=bf_end)
                 # Find occurences from the end
                 find_idx = self.source_word.rfind(tmp)
@@ -54,7 +43,6 @@ class LZ77():
                     find = True
                     break
                 bf_end -= 1
-                t += 1
             # If we have find an occurence
             if find:
                 char = tmp[-1]
@@ -64,7 +52,6 @@ class LZ77():
                 self.new_symbol.append(char)
                 self.prev_dist.append(offset)
                 self.prev_size.append(size)
-                pbar.update(size+1)
                 # Update buffer:
                 buffer.forward(len(tmp))
 
@@ -75,10 +62,7 @@ class LZ77():
                 self.new_symbol.append(tmp[-1])
                 self.prev_size.append(0)
                 self.prev_dist.append(0)
-                pbar.update(1)
                 buffer.forward(1)
-
-            total_idx += 1
 
     def decode(self):
 
@@ -161,15 +145,3 @@ class LZ_Buff():
 
     def __len__(self):
         return self.end_idx - self.start_idx
-
-
-
-
-
-
-
-
-
-
-
-
