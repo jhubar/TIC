@@ -20,8 +20,6 @@ def run_part_1():
     # huffman = Huffman(P_S)
     # huffman.run_hoffman_code()
     # huffman.print_huffman_code()
-
-    # Q2
     #
     # lempel_zip = Lempel_zip(config.SEQUENCE_BIT)
     # lempel_zip.create_sub_sequence()
@@ -56,6 +54,43 @@ def run_part_1():
     # Q5,Q6
     # gen = import_genome(codon = True, size = 0)
     # total_length = len(gen)
+    # Q2
+
+    lempel_zip = Lempel_zip(config.SEQUENCE)
+    lempel_zip.create_sub_sequence()
+    lempel_zip.code_representation()
+    lempel_zip.binary_adddress()
+
+    #
+    # Q4
+    """
+    test = LZ77(l=3)
+
+    sample = 'BASILE BAVE DANS SON BAVOIR'
+
+    test.encode(sample)
+
+    for i in range(0, len(test.prev_size)):
+        print('{} - {} - {} - {}'.format(test.source_word_historique[i],
+                                         test.new_symbol[i],
+                                         test.prev_dist[i],
+                                         test.prev_size[i]))
+
+    print('TEST: =============')
+    for i in range(0, len(test.new_symbol)):
+        print('{} - {} - {}'.format(test.new_symbol[i],
+                                    test.prev_dist[i],
+                                    test.prev_size[i]))
+
+    print('DECODING: ======================')
+
+    decoded = test.decode()
+    """
+    #
+    # print(decoded)
+    # Q5,Q6
+    # gen = import_genome(codon = False)
+    # print(gen)
     # huffman = Huffman(gen)
     # huffman.run_hoffman_code()
     # huffman.print_huffman_code()
@@ -87,6 +122,7 @@ def run_part_1():
 
 
     # Q9
+
     gen = import_genome(codon = False)
     gen = binary_genome(input = gen)
     lempel_zip = Lempel_zip(gen)
@@ -101,6 +137,18 @@ def run_part_1():
     print("compressions rate:  "+str(cpt/len(gen)))
     print("----------------------")
     lempel_zip.binary_adddress()
+
+    # Get arrays
+    numerical_rep = lempel_zip.numerical_representation
+    # Compute weight
+    weight = 0
+    for itm in numerical_rep:
+        weight += len(itm) - 2
+
+    print('Lempel Ziv compression: ')
+    print('Original weight: {}'.format(len(gen)*7))
+    print('Compressed weight: {}'.format(weight))
+    print('Compression rate: {}'.format(weight/(len(gen)*7)))
     # Q10
     # test = LZ77(l=3)
     # test.encode(gen)

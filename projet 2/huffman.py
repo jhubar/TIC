@@ -1,7 +1,7 @@
 import numpy as np
 from collections import Counter
 from scipy.stats import entropy
-
+from tqdm import tqdm
 
 class Hoffman_tree():
     def __init__(self, node_left =  None , node_right = None):
@@ -90,6 +90,16 @@ class Huffman():
         print('--------------------------')
         for (item, code) in self.super_sort(dict = self.frequency):
             print(' %-6r    |%14s' % (item, self.huffman_code[item]))
+
+    def get_encoded_str(self):
+
+        encoded = []
+        print('Compression...')
+        for i in tqdm(range(len(self.sequence))):
+            encoded.append(self.huffman_code[self.sequence[i]])
+
+        return encoded
+
 
 
 
