@@ -64,8 +64,9 @@ class Lempel_zip():
 
                 tmp.append(prefix+suffix)
         self.binary_encoded = tmp
-        return self.binary_encoded
         # print(tmp)
+        return self.binary_encoded
+
 
     def binary_adddress(self):
         print("")

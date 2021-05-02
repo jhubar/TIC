@@ -194,7 +194,7 @@ def LZ_experiment_2(l=7, w=10000):
     test = LZ77(l=l, w=w)
 
     # Import sequence
-    seq = import_genome(codon=False)
+    seq = import_genome(codon=False, size = 0)
 
     # Encode teh sequence
     test.encode(seq)
@@ -231,7 +231,7 @@ def LZ_experiment_2(l=7, w=10000):
 def LZ_hoffman(l=7):
 
     # Get the genome
-    gen = import_genome(codon=False)[0:100000]
+    gen = import_genome(codon=False, size = 0)[0:100000]
 
     test = LZ77(l=l, w=100000)
 
@@ -293,23 +293,3 @@ def LZ_hoffman(l=7):
            huff_size,
            combi_size]
     return opt
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
