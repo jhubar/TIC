@@ -28,8 +28,8 @@ class Lempel_zip():
                 j = 1
 
         self.position = [i for i in range(1,len(list(self.keys)))]
-        print(self.position)
-        print(list(self.keys))
+        #print(self.position)
+        #print(list(self.keys))
         self.sub_sequence = list(self.keys)
 
     def suffix_factoring(self,suffix):
@@ -61,7 +61,8 @@ class Lempel_zip():
                 prefix = self.prefix_factoring(prefix)
 
                 tmp.append(prefix+suffix)
-        print(tmp)
+        self.numerical_representation.append(tmp)
+        #print(tmp)
 
     def binary_adddress(self):
         print("")

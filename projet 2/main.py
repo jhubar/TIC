@@ -21,13 +21,14 @@ def run_part_1():
 
     # Q2
 
-    lempel_zip = Lempel_zip(config.SEQUENCE_BIT)
+    lempel_zip = Lempel_zip(config.SEQUENCE)
     lempel_zip.create_sub_sequence()
     lempel_zip.code_representation()
     lempel_zip.binary_adddress()
 
     #
     # Q4
+    """
     test = LZ77(l=3)
 
     sample = 'BASILE BAVE DANS SON BAVOIR'
@@ -49,10 +50,11 @@ def run_part_1():
     print('DECODING: ======================')
 
     decoded = test.decode()
+    """
     #
     # print(decoded)
     # Q5,Q6
-    gen = import_genome(codon = False)
+    # gen = import_genome(codon = False)
     # print(gen)
     # huffman = Huffman(gen)
     # huffman.run_hoffman_code()
@@ -68,11 +70,24 @@ def run_part_1():
     # plot_empirical_average_length(huffman_sort_encoded)
 
     # Q9
+
     gen = import_genome(codon = False)
     lempel_zip = Lempel_zip(gen)
     lempel_zip.create_sub_sequence()
     lempel_zip.code_representation()
     lempel_zip.binary_adddress()
+
+    # Get arrays
+    numerical_rep = lempel_zip.numerical_representation
+    # Compute weight
+    weight = 0
+    for itm in numerical_rep:
+        weight += len(itm) - 2
+
+    print('Lempel Ziv compression: ')
+    print('Original weight: {}'.format(len(gen)*7))
+    print('Compressed weight: {}'.format(weight))
+    print('Compression rate: {}'.format(weight/(len(gen)*7)))
     # Q10
     # test = LZ77(l=3)
     # test.encode(gen)
