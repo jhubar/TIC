@@ -98,6 +98,8 @@ class Huffman():
             values.append(item)
             keys.append(len(self.huffman_code[item]))
 
-        print(dict(zip(keys, values)))
+        print(keys)
+        print(values)
+        # print(dict(zip(values, keys)))
 
-        return dict(zip(keys, values))
+        return keys, values

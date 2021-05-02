@@ -10,7 +10,7 @@ class Lempel_zip():
         self.sequence = sequence
         self.position = []
         self.sub_sequence = []
-        self.numerical_representation = []
+        self.numerical_representation
         self.keys = {}
 
     def create_sub_sequence(self):
@@ -61,6 +61,7 @@ class Lempel_zip():
                 prefix = self.prefix_factoring(prefix)
 
                 tmp.append(prefix+suffix)
+        self.
         print(tmp)
 
     def binary_adddress(self):

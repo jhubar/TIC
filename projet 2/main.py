@@ -4,7 +4,7 @@ from chanelCoding import *
 from LZ77 import *
 from Lempel_Zip import *
 from genome import *
-
+import matplotlib.pyplot as plt
 
 def run_part_1():
     # test hoffman algo
@@ -20,7 +20,7 @@ def run_part_1():
     # huffman.print_huffman_code()
 
     # Q2
-
+    #
     lempel_zip = Lempel_zip(config.SEQUENCE_BIT)
     lempel_zip.create_sub_sequence()
     lempel_zip.code_representation()
@@ -28,51 +28,52 @@ def run_part_1():
 
     #
     # Q4
-    test = LZ77(l=3)
-
-    sample = 'BASILE BAVE DANS SON BAVOIR'
-
-    test.encode(sample)
-
-    for i in range(0, len(test.prev_size)):
-        print('{} - {} - {} - {}'.format(test.source_word_historique[i],
-                                         test.new_symbol[i],
-                                         test.prev_dist[i],
-                                         test.prev_size[i]))
-
-    print('TEST: =============')
-    for i in range(0, len(test.new_symbol)):
-        print('{} - {} - {}'.format(test.new_symbol[i],
-                                    test.prev_dist[i],
-                                    test.prev_size[i]))
-
-    print('DECODING: ======================')
-
-    decoded = test.decode()
+    # test = LZ77(l=3)
+    #
+    # sample = 'BASILE BAVE DANS SON BAVOIR'
+    #
+    # test.encode(sample)
+    #
+    # for i in range(0, len(test.prev_size)):
+    #     print('{} - {} - {} - {}'.format(test.source_word_historique[i],
+    #                                      test.new_symbol[i],
+    #                                      test.prev_dist[i],
+    #                                      test.prev_size[i]))
+    #
+    # print('TEST: =============')
+    # for i in range(0, len(test.new_symbol)):
+    #     print('{} - {} - {}'.format(test.new_symbol[i],
+    #                                 test.prev_dist[i],
+    #                                 test.prev_size[i]))
+    #
+    # print('DECODING: ======================')
+    #
+    # decoded = test.decode()
     #
     # print(decoded)
     # Q5,Q6
-    gen = import_genome(codon = False)
-    # print(gen)
+    # gen = import_genome(codon = True, size = 0)
+    # total_length = len(gen)
     # huffman = Huffman(gen)
+    # print(len(gen))
     # huffman.run_hoffman_code()
     # huffman.print_huffman_code()
 
     # dist_gen = count_occ(gen)
+
     #
-    # # barplot_dict(dist_gen)
-    # code_length(dist = dist_gen, code_length = huffman.huffman_code)
+    # barplot_dict(dist_gen)
+    # len_code = code_length(dist = dist_gen, code_length = huffman.huffman_code)
     # # Q7
-    # huffman_sort_encoded = huffman.huffman_encoded()
-    # print(huffman_sort_encoded)
-    # plot_empirical_average_length(huffman_sort_encoded)
+    # empirical_average_length(total_length)
+
 
     # Q9
-    gen = import_genome(codon = False)
-    lempel_zip = Lempel_zip(gen)
-    lempel_zip.create_sub_sequence()
-    lempel_zip.code_representation()
-    lempel_zip.binary_adddress()
+    # gen = import_genome(codon = False)
+    # lempel_zip = Lempel_zip(gen)
+    # lempel_zip.create_sub_sequence()
+    # lempel_zip.code_representation()
+    # lempel_zip.binary_adddress()
     # Q10
     # test = LZ77(l=3)
     # test.encode(gen)
