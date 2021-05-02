@@ -5,12 +5,12 @@ import matplotlib.pyplot as plt
 from scipy.io.wavfile import read, write
 from scipy.io import loadmat
 
-""" 
+"""
 This function gives the binary representation of value v (dec)
-	using nb bits (0 by default corresponds to the minimal number of 
+	using nb bits (0 by default corresponds to the minimal number of
 	bits required to represent v).
 
-	examples: 
+	examples:
 	binarize(2)
 	>>> '10'
 
@@ -35,8 +35,8 @@ def load_text_sample(name="genome.txt"):
 	return f
 
 # This function loads the text sample and outputs the binary version (8-bits representation).
-# If spaces=True, then each byte is separated by a space 
-def load_binary_text_sample(name="genome.txt",spaces=True):
+# If spaces=True, then each byte is separated by a space
+def load_binary_text_sample(name="/suppl/genome.txt",spaces=True):
 	f = load_text_sample(name)
 	binary_text = ''
 	for c in f:

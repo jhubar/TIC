@@ -5,11 +5,12 @@ import random
 import numpy as np
 from huffman import *
 
+
 def import_genome(codon : True, size = 0):
     with open('suppl/genome.txt') as f:
         lines = f.readlines()
 
-
+    print(config.SIZE_CODON)
     gen = []
     if size is not None:
         for i in range(len(lines)):
@@ -30,6 +31,7 @@ def import_genome(codon : True, size = 0):
                         tmp = ''.join(tmp)
                         genome.append(tmp)
                         tmp = []
+
                 return genome
             else:
                 # s=gen
@@ -60,7 +62,7 @@ def barplot_dict(dict):
     plt.show()
     plt.close()
 
-def code_length(dist, code_length):
+def code_length(dist, code_length, flag = False):
 
     dist_items = dist.items()
 
@@ -72,21 +74,35 @@ def code_length(dist, code_length):
     code_length = []
     avg_code_length = []
     sum_dist_item = 0
+
     for i in range(len(dist)):
         sum_dist_item+= sorted_dist_items[i][1]
-    total_size_gen = sum_dist_item*3*7
-
+    total_size_gen = sum_dist_item*config.SIZE_CODON*8
+    p_xi = []
     for i in range(len(dist)):
         code_length.append((sorted_dist_items[i][1])*len(sorted_code_length_items[i][1]))
         avg_code_length.append((sorted_dist_items[i][1]/sum_dist_item)*len(sorted_code_length_items[i][1]))
+        p_xi.append( sorted_dist_items[i][1] /sum_dist_item)
+
+
 
     print(' Code Length in bits ')
     print('--------------------------')
     print(str(sum(code_length))+" bits")
     print('--------------------------')
     print(str(sum(avg_code_length))+" bits")
-
-    return sum(avg_code_length)
+    print('--------------------------')
+    print(' Compressions rate ')
+    print(str(sum(code_length)/total_size_gen)+" bits")
+    
+    # print(' Compressions rate bis')
+    # print(str(compression_rate())+" bits")
+    print(' Entropy bound ')
+    print(str(entropy(p_xi, base = 2)))
+    if flag == False:
+        return sum(avg_code_length)
+    else:
+        return sum(code_length)/total_size_gen
 
 def plot_empirical_average_length(values,x_value):
 
@@ -122,3 +138,8 @@ def empirical_average_length(total_length):
         len_code_array_size.append(str(i))
         i+= config.size_increasing
     plot_empirical_average_length(len_code_array,len_code_array_size)
+
+
+
+def compression_rate(n_ori, q_ori, n_code, q_code):
+    return (n_ori*np.log2(q_ori))/(n_code*np.log2(q_code))

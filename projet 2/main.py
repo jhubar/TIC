@@ -6,6 +6,8 @@ from Lempel_Zip import *
 from genome import *
 import matplotlib.pyplot as plt
 
+
+
 def run_part_1():
     # test hoffman algo
     # P_S =  'BCAADDDCCACACAC'
@@ -21,10 +23,10 @@ def run_part_1():
 
     # Q2
     #
-    lempel_zip = Lempel_zip(config.SEQUENCE_BIT)
-    lempel_zip.create_sub_sequence()
-    lempel_zip.code_representation()
-    lempel_zip.binary_adddress()
+    # lempel_zip = Lempel_zip(config.SEQUENCE_BIT)
+    # lempel_zip.create_sub_sequence()
+    # lempel_zip.code_representation()
+    # lempel_zip.binary_adddress()
 
     #
     # Q4
@@ -55,25 +57,50 @@ def run_part_1():
     # gen = import_genome(codon = True, size = 0)
     # total_length = len(gen)
     # huffman = Huffman(gen)
-    # print(len(gen))
     # huffman.run_hoffman_code()
     # huffman.print_huffman_code()
-
     # dist_gen = count_occ(gen)
-
-    #
     # barplot_dict(dist_gen)
     # len_code = code_length(dist = dist_gen, code_length = huffman.huffman_code)
     # # Q7
     # empirical_average_length(total_length)
+    # i = 1
+    # array_compression = []
+    # while i <= 8:
+    #     config.SIZE_CODON = i
+    #     gen = import_genome(codon = True, size = 0)[0:100000]
+    #     total_length = len(gen)
+    #     huffman = Huffman(gen)
+    #     huffman.run_hoffman_code()
+    #     # huffman.print_huffman_code()
+    #     dist_gen = count_occ(gen)
+    #     # barplot_dict(dist_gen)
+    #     array_compression.append(code_length(dist = dist_gen, code_length = huffman.huffman_code, flag = True))
+    #     i+=1
+    # print(array_compression)
+    # plt.plot(np.arange(1,9),array_compression)
+    # plt.savefig('fig/evolution_of_comression.pdf')
+    # plt.xlabel('size of custom codon')
+    # plt.ylabel('Compression rate')
+    # plt.show()
+    # plt.close()
 
 
     # Q9
-    # gen = import_genome(codon = False)
-    # lempel_zip = Lempel_zip(gen)
-    # lempel_zip.create_sub_sequence()
-    # lempel_zip.code_representation()
-    # lempel_zip.binary_adddress()
+    gen = import_genome(codon = False)
+    gen = binary_genome(input = gen)
+    lempel_zip = Lempel_zip(gen)
+    lempel_zip.create_sub_sequence()
+    lempel_ziv = lempel_zip.code_representation()
+    cpt = 0
+    for itm in lempel_ziv:
+        cpt+= len(itm)-2
+    print(cpt)
+    print(len(gen))
+    print("----------------------")
+    print("compressions rate:  "+str(cpt/len(gen)))
+    print("----------------------")
+    lempel_zip.binary_adddress()
     # Q10
     # test = LZ77(l=3)
     # test.encode(gen)

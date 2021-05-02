@@ -10,8 +10,10 @@ class Lempel_zip():
         self.sequence = sequence
         self.position = []
         self.sub_sequence = []
-        self.numerical_representation
+        self.binary_encoded= []
         self.keys = {}
+
+
 
     def create_sub_sequence(self):
         i = 0
@@ -28,8 +30,8 @@ class Lempel_zip():
                 j = 1
 
         self.position = [i for i in range(1,len(list(self.keys)))]
-        print(self.position)
-        print(list(self.keys))
+        # print(self.position)
+        # print(list(self.keys))
         self.sub_sequence = list(self.keys)
 
     def suffix_factoring(self,suffix):
@@ -61,8 +63,22 @@ class Lempel_zip():
                 prefix = self.prefix_factoring(prefix)
 
                 tmp.append(prefix+suffix)
-        self.
-        print(tmp)
+        self.binary_encoded = tmp
+        return self.binary_encoded
+        # print(tmp)
 
     def binary_adddress(self):
         print("")
+
+def binarize(v, nb=0):
+    if nb == 0:
+        return bin(v)[2:]
+    else:
+        return np.binary_repr(v,width=nb)
+
+def binary_genome(input):
+    f = input
+    binary_text = ''
+    for c in f:
+    	binary_text = binary_text + binarize(ord(c),nb=8)
+    return binary_text[1:]

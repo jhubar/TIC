@@ -1,5 +1,7 @@
 import numpy as np
 from collections import Counter
+from scipy.stats import entropy
+
 
 class Hoffman_tree():
     def __init__(self, node_left =  None , node_right = None):
@@ -73,9 +75,9 @@ class Huffman():
 
         if self.flag == True:
             self.compute_frequency()
-        print(self.frequency)
+        # print(self.frequency)
         self.nodes = self.super_sort(dict = self.frequency)
-        print(self.nodes)
+        # print(self.nodes)
         self.create_tree()
 
         self.huffman_code = self.huffman_code_tree(self.nodes[0][0])
@@ -98,8 +100,12 @@ class Huffman():
             values.append(item)
             keys.append(len(self.huffman_code[item]))
 
-        print(keys)
-        print(values)
+        # print(keys)
+        # print(values)
         # print(dict(zip(values, keys)))
 
         return keys, values
+
+
+def compute_bound():
+    print(entropy())
