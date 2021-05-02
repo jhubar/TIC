@@ -2,7 +2,7 @@
 from huffman import *
 from chanelCoding import *
 from LZ77 import *
-from Lempel_Zip import *
+from Lempel_Ziv import *
 from genome import *
 import matplotlib.pyplot as plt
 
@@ -23,13 +23,13 @@ def run_part_1():
     huffman.print_huffman_code()
 
     # Q2
-    lempel_zip = Lempel_zip(config.SEQUENCE_BIT)
-    lempel_zip.create_sub_sequence()
-    lempel_zip.code_representation()
+    lempel_ziv = Lempel_ziv(config.SEQUENCE_BIT)
+    lempel_ziv.create_sub_sequence()
+    lempel_ziv.code_representation()
     print("--------------------------------------")
-    print(lempel_zip.binary_encoded)
-    print((list(lempel_zip.keys)))
-    print(lempel_zip.binary_encoded)
+    print(lempel_ziv.binary_encoded)
+    print((list(lempel_ziv.keys)))
+    print(lempel_ziv.binary_encoded)
     print("--------------------------------------")
 
 
@@ -38,7 +38,7 @@ def run_part_1():
     LZ_experiment_1()
 
     # Q5,Q6
-    REMOVE [0:1000] for compute all genome
+    # REMOVE [0:1000] for compute all genome
     gen = import_genome(codon = True, size = 0)[0:1000]
     total_length = len(gen)
     #
@@ -76,9 +76,9 @@ def run_part_1():
 
     gen = import_genome(codon = False, size = 0)
     gen = binary_genome(input = gen)
-    lempel_zip = Lempel_zip(gen)
-    lempel_zip.create_sub_sequence()
-    lempel_ziv = lempel_zip.code_representation()
+    lempel_ziv = Lempel_ziv(gen)
+    lempel_ziv.create_sub_sequence()
+    lempel_ziv = lempel_ziv.code_representation()
     cpt = 0
     for itm in lempel_ziv:
         cpt+= len(itm)-2

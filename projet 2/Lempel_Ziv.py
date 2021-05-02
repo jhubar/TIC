@@ -3,7 +3,7 @@ from huffman import *
 from LZ77 import *
 import config
 
-class Lempel_zip():
+class Lempel_ziv():
 
     def __init__(self,sequence):
 
