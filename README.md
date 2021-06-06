@@ -26,7 +26,8 @@
 
 ## Link
  * [Web course page](https://people.montefiore.uliege.be/lwh/Info/)
-
+## EXO 
+- [Channel coding](https://www.ant.uni-bremen.de/sixcms/media.php/102/12709/cc1_solutions.pdf)
 ## Nice tuto
 - [Learning Guide and Examples](https://www.cl.cam.ac.uk/teaching/0809/InfoTheory/LearnGuide08.pdf)
 - [lempel zip](https://www.youtube.com/watch?v=V0xA2977fgE&t=185s)
